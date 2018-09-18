@@ -1,0 +1,42 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest",
+    "tslint-config-airbnb",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "import-name": [
+      true,
+      {
+        "app": "App",
+        "document": "Document",
+        "graphqlTag": "gql",
+        "isomorphicUnfetch": "fetch",
+        "head": "Head",
+        "link": "Link",
+        "react": "React",
+        "styledComponents": "styled",
+        "reactDom": "ReactDOM"
+      }
+    ],
+    "jsx-boolean-value": ["never"],
+    "jsx-no-lambda": [false],
+    "jsx-self-close": [true],
+    "interface-name": [false],
+    "no-submodule-imports": [
+      true,
+      "next/app",
+      "next/document",
+      "next/link",
+      "next/router"
+    ],
+    // Unused variables are still not allowed, but the one checking for this is the Typescript compiler
+    "no-unused-variable": [false],
+    "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+    "variable-name": [true, "allow-pascal-case"]
+  },
+  "rulesDirectory": []
+}

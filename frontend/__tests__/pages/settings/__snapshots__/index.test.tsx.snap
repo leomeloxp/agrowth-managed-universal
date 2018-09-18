@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SettingsPage/> should match snapshot 1`] = `
+<div>
+  <h1
+    data-testid="withRouter"
+  >
+    Mocked withRouter
+  </h1>
+  <ul>
+    <li>
+      <a
+        data-testid="link-to-manage-produce"
+        href="/settings/manage-produce"
+      >
+        Manage Produce
+      </a>
+    </li>
+    <li>
+      <a
+        data-testid="link-to-manage-buyers"
+        href="/settings/manage-buyers"
+      >
+        Manage Buyers
+      </a>
+    </li>
+    <li>
+      <a
+        data-testid="link-to-manage-supplier"
+        href="/settings/manage-supplier"
+      >
+        Manage Suppliers
+      </a>
+    </li>
+  </ul>
+</div>
+`;
