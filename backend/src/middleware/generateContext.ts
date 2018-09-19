@@ -4,9 +4,11 @@ import { Model } from 'mongoose';
 import {
   Buyer,
   IBuyerDocument,
+  ILocationDocument,
   IProduceDocument,
   ISupplierDocument,
   IUserDocument,
+  Location,
   Produce,
   Supplier,
   User
@@ -15,6 +17,7 @@ import {
 export interface IApolloCustomContext extends Context {
   Produce: Model<IProduceDocument>;
   Buyer: Model<IBuyerDocument>;
+  Location: Model<ILocationDocument>;
   Supplier: Model<ISupplierDocument>;
   User: Model<IUserDocument>;
 }
@@ -27,6 +30,7 @@ export interface IApolloCustomContext extends Context {
 export const generateContext = async (): Promise<IApolloCustomContext> => {
   return {
     Buyer,
+    Location,
     Produce,
     Supplier,
     User

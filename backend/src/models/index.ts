@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 import { Buyer, IBuyer, IBuyerDocument } from './Buyer';
+import { ILocation, ILocationDocument, Location } from './Location';
 import { IProduce, IProduceDocument, Produce } from './Produce';
 import { ISupplier, ISupplierDocument, Supplier } from './Supplier';
 import { IUser, IUserDocument, User } from './User';
@@ -10,13 +11,16 @@ export {
   Produce,
   User,
   IBuyer,
+  ILocation,
   IProduce,
   IBuyerDocument,
+  ILocationDocument,
   IProduceDocument,
   IUser,
   IUserDocument,
   ISupplier,
   ISupplierDocument,
+  Location,
   Supplier
 };
 

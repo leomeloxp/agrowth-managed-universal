@@ -1,5 +1,5 @@
 import { IApolloCustomContext } from '../../middleware/generateContext';
-import { IBuyer, IProduce, ISupplier, IUser } from '../../models';
+import { IBuyer, ILocation, IProduce, ISupplier, IUser } from '../../models';
 const resolvers = {
   /**
    * Second argument in the functions below must have union type any due to
@@ -65,7 +65,28 @@ const resolvers = {
       await Supplier.update({ _id: id }, data).exec();
       const dbSupplier = await Supplier.findById(id).exec();
       return dbSupplier;
-    }
+    },
+
+    createLocation: async (
+      {} = {},
+      { data }: any,
+      { Location }: IApolloCustomContext
+    ): Promise<ILocation> => {
+      const location = new Location(data);
+      await location.save();
+      return location;
+    },
+
+    updateLocation: async (
+      {} = {},
+      { id, data }: any,
+      { Location }: IApolloCustomContext
+    ): Promise<ILocation | null> => {
+      await Location.update({ _id: id }, data).exec();
+      const dbLocation = await Location.findById(id).exec();
+      return dbLocation;
+    },
+
   },
 
   Query: {
@@ -86,6 +107,12 @@ const resolvers = {
       {} = {},
       { Supplier }: IApolloCustomContext
     ): Promise<ISupplier[]> => Supplier.find(),
+
+    locationList: async (
+      {} = {},
+      {} = {},
+      { Location }: IApolloCustomContext
+    ): Promise<ILocation[]> => Location.find(),
 
     users: async (
       {} = {},
