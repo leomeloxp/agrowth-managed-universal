@@ -8,22 +8,22 @@ import user from './user';
 
 const coreTypeDefs: DocumentNode = gql`
   type Mutation {
-    createLocation(data: LocationUpdateInput): Location
-    updateLocation(data: LocationUpdateInput!, id: ID!): Location
-    createSupplier(data: SupplierUpdateInput): Supplier
-    createProduce(data: ProduceUpdateInput): Produce
-    updateProduce(data: ProduceUpdateInput!, id: ID!): Produce
     createBuyer(data: BuyerUpdateInput): Buyer
+    createLocation(data: LocationUpdateInput): Location
+    createProduce(data: ProduceUpdateInput): Produce
+    createSupplier(data: SupplierUpdateInput): Supplier
     updateBuyer(data: BuyerUpdateInput!, id: ID!): Buyer
+    updateLocation(data: LocationUpdateInput!, id: ID!): Location
+    updateProduce(data: ProduceUpdateInput!, id: ID!): Produce
     updateSupplier(data: SupplierUpdateInput!, id: ID!): Supplier
   }
 
   type Query {
-    users: [User]
     buyersList: [Buyer]
+    locationList: [Location]
     produceList: [Produce]
     supplierList: [Supplier]
-    locationList: [Location]
+    users: [User]
   }
 `;
 
