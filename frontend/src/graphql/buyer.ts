@@ -12,7 +12,7 @@ export interface IBuyer {
 }
 
 export interface IBuyerListQuery extends DocumentNode {
-  buyersList: IBuyer[];
+  buyerList: IBuyer[];
 }
 
 export const ADD_BUYER = gql`
@@ -39,7 +39,7 @@ export const UPDATE_BUYER = gql`
 
 export const LIST_BUYER: IBuyerListQuery = gql`
   query LIST_BUYER {
-    buyersList {
+    buyerList {
       id
       name
       phoneNumber

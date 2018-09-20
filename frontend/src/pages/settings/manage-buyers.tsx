@@ -2,13 +2,13 @@ import { DocumentNode } from 'graphql';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import CreateBuyersModal from '../../components/CreateBuyersModal';
-import EditBuyersModal from '../../components/EditBuyersModal';
+import CreateBuyerModal from '../../components/CreateBuyerModal';
+import EditBuyerModal from '../../components/EditBuyerModal';
 import Button from '../../components/elements/Button';
 import Header from '../../components/Header';
-import { IBuyer, LIST_BUYER } from '../../graphql/buyers';
+import { IBuyer, LIST_BUYER } from '../../graphql/buyer';
 
-export interface IManageBuyersPageState {
+export interface IManageBuyerPageState {
   buyer: unknown | IBuyer;
   renderCreateModal: boolean;
   renderEditModal: boolean;
@@ -47,9 +47,9 @@ const ModelObjectListItemDetails = styled.div`
   font-size: 0.85rem;
 `;
 
-export default class ManageBuyersPage extends Component<
+export default class ManageBuyerPage extends Component<
   {},
-  IManageBuyersPageState
+  IManageBuyerPageState
 > {
   public state = {
     buyer: {},
@@ -75,12 +75,12 @@ export default class ManageBuyersPage extends Component<
   public render() {
     return (
       <React.Fragment>
-        <Header pageTitle='Manage Buyers' />
+        <Header pageTitle="Manage Buyer" />
         {this.state.renderCreateModal && (
-          <CreateBuyersModal close={this.closeModal} />
+          <CreateBuyerModal close={this.closeModal} />
         )}
         {this.state.renderEditModal && (
-          <EditBuyersModal
+          <EditBuyerModal
             close={this.closeModal}
             buyer={this.state.buyer as IBuyer}
           />
@@ -88,31 +88,31 @@ export default class ManageBuyersPage extends Component<
         <Query query={LIST_BUYER as DocumentNode}>
           {({ loading, error, data }) => {
             if (loading) {
-              return <p data-testid='manage-buyers--loading'>Loading...</p>;
+              return <p data-testid="manage-buyers--loading">Loading...</p>;
             }
             if (error) {
               return (
-                <p data-testid='manage-buyers--error'>
+                <p data-testid="manage-buyers--error">
                   <strong>Error occurred:</strong> {error.message}
                 </p>
               );
             }
 
-            if (data && data.buyersList) {
-              const { buyersList } = data;
+            if (data && data.buyerList) {
+              const { buyerList } = data;
               return (
                 <div>
                   <Button
-                    data-testid='manage-buyers--button-add-new'
+                    data-testid="manage-buyers--button-add-new"
                     onClick={this.handleCreateButtonClick}
                   >
                     add new buyer
                   </Button>
                   <ModelObjectList>
-                    {buyersList.map((buyer: IBuyer) => (
+                    {buyerList.map((buyer: IBuyer) => (
                       <ModelObjectListItem
                         key={buyer.id}
-                        data-testid='manage-buyers--list-item'
+                        data-testid="manage-buyers--list-item"
                       >
                         <ModelObjectListItemWrapper>
                           <ModelObjectListItemTitle>
@@ -120,11 +120,12 @@ export default class ManageBuyersPage extends Component<
                           </ModelObjectListItemTitle>
                           <ModelObjectListItemDetails>
                             {buyer.phoneNumber}
-                            {buyer.email ? ` | ${buyer.email}` : null}
+                            {buyer.phoneNumber && buyer.email ? ' | ' : null}
+                            {buyer.email}
                           </ModelObjectListItemDetails>
                         </ModelObjectListItemWrapper>
                         <Button
-                          data-testid='manage-buyers--button-edit'
+                          data-testid="manage-buyers--button-edit"
                           onClick={() => this.handleEditButtonClick(buyer)}
                         >
                           edit
@@ -136,7 +137,7 @@ export default class ManageBuyersPage extends Component<
               );
             }
             return (
-              <p data-testid='manage-buyers--impossible-case'>
+              <p data-testid="manage-buyers--impossible-case">
                 An unkown error has occurred. It has been reported.
               </p>
             );

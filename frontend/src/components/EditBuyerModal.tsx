@@ -2,21 +2,22 @@ import { DocumentNode } from 'graphql';
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import {
-  ADD_BUYER,
   IBuyer,
   IBuyerListQuery,
-  LIST_BUYER
-} from '../graphql/buyers';
+  LIST_BUYER,
+  UPDATE_BUYER
+} from '../graphql/buyer';
 import Button from './elements/Button';
 import StyledInputBlock from './elements/StyledInputBlock';
 import Modal from './Modal';
 
-export interface ListBuyersQueryData {
-  buyersList: IBuyer[];
+export interface ListBuyerQueryData {
+  buyerList: IBuyer[];
 }
 
 export interface IEditBuyersModalProps {
   close: () => void;
+  buyer: IBuyer;
 }
 
 export interface IEditBuyersModalState {
@@ -28,7 +29,7 @@ class EditBuyersModal extends React.Component<
   IEditBuyersModalState
 > {
   public state = {
-    buyer: { name: '', phoneNumber: '', email: '' }
+    buyer: { ...this.props.buyer, id: undefined, __typename: undefined }
   };
 
   public handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -44,30 +45,34 @@ class EditBuyersModal extends React.Component<
     return (
       <Modal close={this.props.close}>
         <Mutation
-          mutation={ADD_BUYER}
-          update={(cache, { data: { createBuyer } }) => {
+          mutation={UPDATE_BUYER}
+          update={(cache, { data: { updateBuyers } }) => {
             const queryResults = cache.readQuery<IBuyerListQuery>({
               query: LIST_BUYER as DocumentNode
             });
-            if (queryResults && 'buyersList' in queryResults) {
-              const { buyersList } = queryResults;
+            if (queryResults && 'buyerList' in queryResults) {
+              const { buyerList } = queryResults;
+              buyerList.map(
+                buyer => (buyer.id === updateBuyers.id ? updateBuyers : buyer)
+              );
               cache.writeQuery({
                 data: {
-                  buyersList: buyersList.concat([createBuyer])
+                  buyerList
                 },
                 query: LIST_BUYER as DocumentNode
               });
             }
           }}
         >
-          {(createBuyer, { data, loading, error }) => {
-            // tslint:disable-next-line:no-console
-            console.log({ data, loading, error });
+          {(createBuyer, { loading, error }) => {
             if (error) {
               return (
-                <p>
-                  <strong>An error ocurred: ${error}</strong>
-                </p>
+                <div>
+                  <p>
+                    <strong>An error ocurred</strong>
+                  </p>
+                  <p>${error.message}</p>
+                </div>
               );
             }
             if (loading) {
@@ -82,41 +87,47 @@ class EditBuyersModal extends React.Component<
               <form
                 onSubmit={e => {
                   e.preventDefault();
-                  createBuyer({ variables: { data: this.state.buyer } });
+                  createBuyer({
+                    variables: {
+                      data: {
+                        ...this.state.buyer
+                      },
+                      id: this.props.buyer.id
+                    }
+                  });
                 }}
               >
-                <StyledInputBlock htmlFor='name'>
+                <StyledInputBlock htmlFor="name">
                   <span>Name</span>
                   <input
-                    name='name'
-                    type='text'
+                    name="name"
+                    type="text"
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.name}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor='phoneNumber'>
+                <StyledInputBlock htmlFor="phoneNumber">
                   <span>Phone</span>
                   <input
-                    name='phoneNumber'
-                    type='text'
+                    name="phoneNumber"
+                    type="text"
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.phoneNumber}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor='email'>
+                <StyledInputBlock htmlFor="email">
                   <span>Email</span>
                   <input
-                    name='email'
-                    type='text'
+                    name="email"
+                    type="text"
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.email}
                   />
                 </StyledInputBlock>
-               
-                <Button primary type='submit'>
+                <Button primary type="submit">
                   Save
                 </Button>
               </form>
@@ -127,4 +138,5 @@ class EditBuyersModal extends React.Component<
     );
   }
 }
+
 export default EditBuyersModal;
