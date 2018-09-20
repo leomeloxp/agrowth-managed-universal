@@ -21,6 +21,8 @@ const StyledModal = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 25px 1fr;
+  max-width: 20rem;
+  width: calc(100% - 2rem);
   ${({ theme }) => theme.elevation(23)};
   .content {
     grid-row: 2 / -1;
@@ -47,13 +49,13 @@ const CloseButton = styled.button`
 export default class Modal extends React.Component<{ close: () => void }> {
   public render() {
     return (
-      <Portal selector='.react-portal-holder'>
+      <Portal selector=".react-portal-holder">
         <StyledOverlay>
           <StyledModal>
-            <CloseButton onClick={this.props.close} aria-label='close modal'>
+            <CloseButton onClick={this.props.close} aria-label="close modal">
               &times;
             </CloseButton>
-            <div className='content'>{this.props.children}</div>
+            <div className="content">{this.props.children}</div>
           </StyledModal>
         </StyledOverlay>
       </Portal>

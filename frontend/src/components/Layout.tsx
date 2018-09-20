@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectGlobal, ThemeProvider } from 'styled-components';
+import { injectGlobal, ThemeProvider, css } from 'styled-components';
 import { colours, gradients } from '../utils/colours';
 import { elevation } from '../utils/elevation';
 
@@ -30,7 +30,11 @@ const Layout: React.SFC = ({ children }) => (
     theme={{
       colours,
       elevation,
-      gradients
+      gradients,
+      transition: (property = 'all', duration = 0.4) => css`
+        will-change: ${property};
+        transition: ${property} ${duration}s;
+      `
     }}
   >
     {children}
