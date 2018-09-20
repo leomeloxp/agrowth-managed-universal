@@ -26,11 +26,11 @@ const LocationSchema = new mongoose.Schema({
     type: Date
   },
   latitude: {
-    required: false,
+    required: true,
     type: String
   },
   longitude: {
-    required: false,
+    required: true,
     type: String
   },
   name: {
@@ -54,6 +54,9 @@ LocationSchema.pre<ILocationDocument>('save', function preSave(next): void {
   next();
 });
 
-const Location: Model<ILocationDocument> = mongoose.model('Location', LocationSchema);
+const Location: Model<ILocationDocument> = mongoose.model(
+  'Location',
+  LocationSchema
+);
 
 export { Location };
