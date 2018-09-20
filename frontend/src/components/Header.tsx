@@ -10,12 +10,13 @@ export interface IHeaderProps {
 
 const StyledHeader = styled.header`
   align-items: center;
-  background-color: ${({ theme }) => theme.colours.primary};
+  background-color: ${({ theme }) => theme.colours.primaryDark};
   color: ${({ theme }) => theme.colours.white};
   display: grid;
-  grid-template-areas: "back title icons";
+  grid-template-areas: 'back title icons';
   grid-template-columns: minmax(0, min-content) 1fr min-content;
   margin-bottom: 25px;
+  outline-color: ${({ theme }) => theme.colours.white};
   padding: 0 1rem;
 `;
 
@@ -59,7 +60,10 @@ const Header: React.SFC<
   return (
     <StyledHeader>
       {length > 0 && pathname !== '/' ? (
-        <BackButton onClick={window.history.back.bind(window.history)}>
+        <BackButton
+          onClick={window.history.back.bind(window.history)}
+          title="Go to previous page"
+        >
           <ArrowBack />
         </BackButton>
       ) : null}
@@ -70,8 +74,8 @@ const Header: React.SFC<
       </Link>
       <HeaderIcons>
         <li>
-          <Link prefetch href='/settings'>
-            <a>
+          <Link prefetch href="/settings">
+            <a title="Settings page">
               <Menu />
             </a>
           </Link>

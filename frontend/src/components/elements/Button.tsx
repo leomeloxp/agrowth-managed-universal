@@ -6,24 +6,22 @@ export interface IButtonProps {
 }
 
 const Button = styled.button<IButtonProps>`
-  display: inline-flex;
-  position: relative;
   align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  min-width: 64px;
-  height: 3rem;
+  background-color: ${({ theme }) => theme.colours.gray};
   border: none;
-  outline: none;
+  color: ${({ theme }) => theme.colours.black};
+  display: inline-flex;
   font-size: 0.875rem;
-  line-height: 2.25rem;
   font-weight: normal;
-  text-decoration: none;
+  height: 3rem;
+  justify-content: center;
+  line-height: 2.25rem;
+  min-width: 64px;
   text-transform: uppercase;
   ${({ primary, theme }) =>
     primary &&
     css`
-      background-color: ${theme.colours.primary};
+      background-color: ${theme.colours.primaryDark};
       color: ${theme.colours.white};
     `};
   ${({ alert, theme }) =>

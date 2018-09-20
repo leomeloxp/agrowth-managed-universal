@@ -14,10 +14,13 @@ injectGlobal`
   *:before,
   *:after {
     box-sizing: inherit;
+    outline-color: inherit;
   }
 
   body {
     font-family: 'Roboto', sans-serif;
+    color: ${colours.black};
+    outline-color: ${colours.primary}
     line-height: 2;
   }
 `;

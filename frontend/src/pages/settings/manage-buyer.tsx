@@ -1,11 +1,11 @@
 import { DocumentNode } from 'graphql';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import CreateProduceModal from '../../components/CreateProduceModal';
-import EditProduceModal from '../../components/EditProduceModal';
+import CreateBuyerModal from '../../components/CreateBuyerModal';
+import EditBuyerModal from '../../components/EditBuyerModal';
 import Button from '../../components/elements/Button';
 import Header from '../../components/Header';
-import { IProduce, LIST_PRODUCE } from '../../graphql/produce';
+import { IBuyer, LIST_BUYER } from '../../graphql/buyer';
 import {
   ModelObjectList,
   ModelObjectListItem,
@@ -13,28 +13,29 @@ import {
   ModelObjectListItemTitle,
   ModelObjectListItemDetails
 } from '../../components/elements/ModelObjectList';
-export interface IManageProducePageState {
-  produce: unknown | IProduce;
+
+export interface IManageBuyerPageState {
+  buyer: unknown | IBuyer;
   renderCreateModal: boolean;
   renderEditModal: boolean;
 }
 
-export default class ManageProducePage extends Component<
+export default class ManageBuyerPage extends Component<
   {},
-  IManageProducePageState
+  IManageBuyerPageState
 > {
   public state = {
-    produce: {},
+    buyer: {},
     renderCreateModal: false,
     renderEditModal: false
   };
 
-  public handleCreateButtonClick = () => {
-    this.setState({ renderCreateModal: true });
+  public handleEditButtonClick = (buyer: IBuyer) => {
+    this.setState({ buyer, renderEditModal: true });
   };
 
-  public handleEditButtonClick = (produce: IProduce) => {
-    this.setState({ produce, renderEditModal: true });
+  public handleCreateButtonClick = () => {
+    this.setState({ renderCreateModal: true });
   };
 
   public closeModal = () => {
@@ -47,57 +48,59 @@ export default class ManageProducePage extends Component<
   public render() {
     return (
       <React.Fragment>
-        <Header pageTitle="Manage Produce" />
+        <Header pageTitle="Manage Buyer" />
         <main>
           {this.state.renderCreateModal && (
-            <CreateProduceModal close={this.closeModal} />
+            <CreateBuyerModal close={this.closeModal} />
           )}
-          {this.state.renderEditModal && this.state.produce ? (
-            <EditProduceModal
+          {this.state.renderEditModal && (
+            <EditBuyerModal
               close={this.closeModal}
-              produce={this.state.produce as IProduce}
+              buyer={this.state.buyer as IBuyer}
             />
-          ) : null}
-          <Query query={LIST_PRODUCE as DocumentNode}>
+          )}
+          <Query query={LIST_BUYER as DocumentNode}>
             {({ loading, error, data }) => {
               if (loading) {
-                return <p data-testid="manage-produce--loading">Loading...</p>;
+                return <p data-testid="manage-buyers--loading">Loading...</p>;
               }
               if (error) {
                 return (
-                  <p data-testid="manage-produce--error">
+                  <p data-testid="manage-buyers--error">
                     <strong>Error occurred:</strong> {error.message}
                   </p>
                 );
               }
 
-              if (data && data.produceList) {
-                const { produceList } = data;
+              if (data && data.buyerList) {
+                const { buyerList } = data;
                 return (
                   <div>
                     <Button
-                      data-testid="manage-produce--button-add-new"
+                      data-testid="manage-buyers--button-add-new"
                       onClick={this.handleCreateButtonClick}
                     >
-                      add new produce
+                      add new buyer
                     </Button>
                     <ModelObjectList>
-                      {produceList.map((produce: IProduce) => (
+                      {buyerList.map((buyer: IBuyer) => (
                         <ModelObjectListItem
-                          key={produce.id}
-                          data-testid="manage-produce--list-item"
+                          key={buyer.id}
+                          data-testid="manage-buyers--list-item"
                         >
                           <ModelObjectListItemWrapper>
                             <ModelObjectListItemTitle>
-                              <strong>{produce.name}</strong>
+                              <strong>{buyer.name}</strong>
                             </ModelObjectListItemTitle>
                             <ModelObjectListItemDetails>
-                              Unit: {produce.unit}
+                              {buyer.phoneNumber}
+                              {buyer.phoneNumber && buyer.email ? ' | ' : null}
+                              {buyer.email}
                             </ModelObjectListItemDetails>
                           </ModelObjectListItemWrapper>
                           <Button
-                            data-testid="manage-produce--button-edit"
-                            onClick={() => this.handleEditButtonClick(produce)}
+                            data-testid="manage-buyers--button-edit"
+                            onClick={() => this.handleEditButtonClick(buyer)}
                           >
                             edit
                           </Button>
@@ -108,7 +111,7 @@ export default class ManageProducePage extends Component<
                 );
               }
               return (
-                <p data-testid="manage-produce--impossible-case">
+                <p data-testid="manage-buyers--impossible-case">
                   An unkown error has occurred. It has been reported.
                 </p>
               );
