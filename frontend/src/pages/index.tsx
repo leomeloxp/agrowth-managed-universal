@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import GoogleMap from '../components/GoogleMap';
-import GoogleMapsMarker from '../components/GoogleMapsMarker';
+import GoogleMaps from '../components/GoogleMaps';
 
 const HomePage: React.SFC = () => (
   <React.Fragment>
@@ -9,9 +8,9 @@ const HomePage: React.SFC = () => (
     <main>
       <h1>Hello world</h1>
     </main>
-    <GoogleMap>
-      <GoogleMapsMarker />
-    </GoogleMap>
+    <GoogleMaps.Map>
+      <GoogleMaps.Marker />
+    </GoogleMaps.Map>
   </React.Fragment>
 );
 
