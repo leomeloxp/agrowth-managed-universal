@@ -4,7 +4,7 @@ import { DefaultQuery, withRouter, WithRouterProps } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-export interface IHeaderProps {
+export interface IHeaderProps extends LinkState {
   pageTitle: string;
 }
 
@@ -51,7 +51,7 @@ const BackButton = styled.button`
 `;
 
 const Header: React.SFC<
-  IHeaderProps & WithRouterProps<DefaultQuery> & LinkState
+  IHeaderProps & WithRouterProps<DefaultQuery & LinkState>
 > = ({ router: { pathname }, pageTitle, href }) => {
   let length: number = 0;
   if (typeof window !== 'undefined') {
@@ -84,6 +84,6 @@ const Header: React.SFC<
     </StyledHeader>
   );
 };
-const HeaderWithRouter = withRouter<IHeaderProps>(Header);
+const HeaderWithRouter = withRouter(Header);
 
 export default HeaderWithRouter;
