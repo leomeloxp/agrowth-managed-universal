@@ -46,11 +46,6 @@ export default class MyDocument extends Document {
           */}
           <div className='react-portal-holder' />
           <NextScript />
-          <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHp0nPGPj_TlUTvdwnw3y7zB4UnWSpFA4"
-            async
-            defer
-          />
         </body>
       </html>
     );

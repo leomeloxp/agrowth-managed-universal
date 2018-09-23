@@ -28,20 +28,19 @@ export const GoogleMapsContext = React.createContext<IGoogleMapsContext>({
 });
 
 export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
-  private wrapper?: React.RefObject<HTMLDivElement>;
-
   public state = {
-    mapsLoaded: false,
     map: undefined,
+    mapsLoaded: false,
     markers: new Map()
   };
+  private wrapper?: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
     super(props);
     this.wrapper = React.createRef();
   }
 
-  componentDidMount = () => {
+  public componentDidMount = () => {
     /**
      * Import the Google Maps script, but only if we haven't already loaded it once before
      */
@@ -55,14 +54,14 @@ export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
       script.defer = true;
       script.onload = this.waitForMapsScript;
       script.src =
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCHp0nPGPj_TlUTvdwnw3y7zB4UnWSpFA4';
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyDbGrQPofvzeiuUkX-66RLlmh3udAjEBd0';
       document.body.appendChild(script);
     } else {
       this.waitForMapsScript();
     }
   };
 
-  waitForMapsScript = () => {
+  public waitForMapsScript = () => {
     if ('undefined' !== typeof google && google.maps && this.wrapper) {
       const map = new google.maps.Map(this.wrapper.current, {
         center: { lat: 49.0285073, lng: -2.1159834 },
@@ -75,7 +74,7 @@ export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
     }
   };
 
-  addMarkerToState = ({
+  public addMarkerToState = ({
     id,
     marker
   }: {
@@ -92,10 +91,10 @@ export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
     });
   };
 
-  render() {
+  public render() {
     return (
       <GoogleMapsWrapper>
-        <div className="holder" ref={this.wrapper} />
+        <div className='holder' ref={this.wrapper} />
         {this.state.mapsLoaded && (
           <GoogleMapsContext.Provider
             value={{
