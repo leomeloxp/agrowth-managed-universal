@@ -1,4 +1,4 @@
-import { IApolloCustomContext } from '../../middleware/generateContext';
+import { IApolloCustomContext } from '../../lib/generateContext';
 import { IProduce } from '../../models';
 
 export const createProduce = async (

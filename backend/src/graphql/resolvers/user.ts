@@ -1,4 +1,4 @@
-import { IApolloCustomContext } from '../../middleware/generateContext';
+import { IApolloCustomContext } from '../../lib/generateContext';
 import { IUser } from '../../models';
 
 export const userList = async (
