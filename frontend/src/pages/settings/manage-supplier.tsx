@@ -93,6 +93,7 @@ export default class ManageSupplierPage extends Component<
                               <strong>{supplier.name}</strong>
                             </ModelObjectListItemTitle>
                             <ModelObjectListItemDetails>
+                              {supplier.locations[0].name} {' | '} 
                               {supplier.phoneNumber}
                               {supplier.phoneNumber && supplier.email
                                 ? ' | '

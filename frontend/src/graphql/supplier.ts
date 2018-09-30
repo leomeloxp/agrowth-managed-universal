@@ -1,6 +1,6 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
-
+import { ILocation } from './location';
 export interface ISupplier {
   id: string;
   createdAt: string;
@@ -9,6 +9,7 @@ export interface ISupplier {
   phoneNumber: string;
   email: string;
   comments: string;
+  locations: [ILocation];
 }
 
 export interface ISupplierListQuery extends DocumentNode {
@@ -22,6 +23,13 @@ export const ADD_SUPPLIER = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -33,6 +41,13 @@ export const UPDATE_SUPPLIER = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -44,6 +59,13 @@ export const LIST_SUPPLIER: ISupplierListQuery = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;

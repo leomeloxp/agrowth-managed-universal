@@ -28,7 +28,7 @@ class EditSupplierModal extends React.Component<
   IEditSupplierModalState
 > {
   public state = {
-    supplier: { name: '', phoneNumber: '', email: '' }
+    supplier: { name: '', phoneNumber: '', email: '', locations: '' }
   };
 
   public handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -113,6 +113,16 @@ class EditSupplierModal extends React.Component<
                     required
                     onChange={this.handleInputChange}
                     value={this.state.supplier.phoneNumber}
+                  />
+                </StyledInputBlock>
+                <StyledInputBlock htmlFor='locations'>
+                  <span>Location</span>
+                  <input
+                    name='location'
+                    type='text'
+                    required
+                    onChange={this.handleInputChange}
+                    value={this.state.supplier.locations}
                   />
                 </StyledInputBlock>
                 <Button primary type='submit'>

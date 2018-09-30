@@ -1,6 +1,7 @@
 import { DocumentNode } from 'graphql';
 import React from 'react';
 import { Mutation } from 'react-apollo';
+import { ILocation } from '../graphql/location';
 import {
   ISupplier,
   ISupplierListQuery,
@@ -21,7 +22,12 @@ export interface IEditSupplierModalProps {
 }
 
 export interface IEditSupplierModalState {
-  supplier: { name: string; phoneNumber: string; email: string };
+  supplier: {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    locations: [ILocation];
+  };
 }
 
 class EditSupplierModal extends React.Component<
@@ -126,6 +132,16 @@ class EditSupplierModal extends React.Component<
                     required
                     onChange={this.handleInputChange}
                     value={this.state.supplier.phoneNumber}
+                  />
+                </StyledInputBlock>
+                <StyledInputBlock htmlFor='locations'>
+                  <span>Locations</span>
+                  <input
+                    name='locations'
+                    type='text'
+                    required
+                    onChange={this.handleInputChange}
+                    value={JSON.stringify(this.state.supplier.locations)}
                   />
                 </StyledInputBlock>
                 <Button primary type='submit'>
