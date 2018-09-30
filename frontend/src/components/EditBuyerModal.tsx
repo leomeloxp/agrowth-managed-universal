@@ -7,6 +7,7 @@ import {
   LIST_BUYER,
   UPDATE_BUYER
 } from '../graphql/buyer';
+import { ILocation } from '../graphql/location';
 import Button from './elements/Button';
 import StyledInputBlock from './elements/StyledInputBlock';
 import Modal from './Modal';
@@ -21,7 +22,12 @@ export interface IEditBuyersModalProps {
 }
 
 export interface IEditBuyersModalState {
-  buyer: { name: string; phoneNumber: string; email: string };
+  buyer: {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    locations: [ILocation];
+  };
 }
 
 class EditBuyersModal extends React.Component<
@@ -125,6 +131,16 @@ class EditBuyersModal extends React.Component<
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.email}
+                  />
+                </StyledInputBlock>
+                <StyledInputBlock htmlFor='locations'>
+                  <span>Locations</span>
+                  <input
+                    name='locations'
+                    type='text'
+                    required
+                    onChange={this.handleInputChange}
+                    value={JSON.stringify(this.state.buyer.locations)}
                   />
                 </StyledInputBlock>
                 <Button primary type="submit">

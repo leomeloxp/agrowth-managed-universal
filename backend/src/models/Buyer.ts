@@ -1,5 +1,6 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from './index';
+import { ILocation, LocationSchema } from './Location';
 
 export interface IBuyer {
   // System fields
@@ -11,6 +12,8 @@ export interface IBuyer {
   phoneNumber: string;
   email: string;
   comments: string;
+  locations: ILocation[];
+
 }
 
 export interface IBuyerDocument extends IBuyer, ICustomDocument {}
@@ -28,6 +31,7 @@ const BuyerSchema = new mongoose.Schema({
     required: false,
     type: String
   },
+  locations: [LocationSchema],
   name: {
     required: true,
     type: String

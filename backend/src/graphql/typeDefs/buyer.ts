@@ -10,6 +10,7 @@ const buyerTypeDef: DocumentNode = gql`
     phoneNumber: String
     email: String
     comments: String
+    locations: [Location]
   }
 
   input BuyerUpdateInput {

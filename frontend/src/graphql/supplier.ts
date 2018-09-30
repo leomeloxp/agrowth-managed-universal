@@ -1,6 +1,7 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { ILocation } from './location';
+
 export interface ISupplier {
   id: string;
   createdAt: string;

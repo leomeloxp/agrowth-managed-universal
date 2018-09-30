@@ -28,7 +28,7 @@ class EditBuyersModal extends React.Component<
   IEditBuyersModalState
 > {
   public state = {
-    buyer: { name: '', phoneNumber: '', email: '' }
+    buyer: { name: '', phoneNumber: '', email: '', locations: ''}
   };
 
   public handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -113,6 +113,16 @@ class EditBuyersModal extends React.Component<
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.email}
+                  />
+                </StyledInputBlock>
+                <StyledInputBlock htmlFor='locations'>
+                  <span>Location</span>
+                  <input
+                    name='location'
+                    type='text'
+                    required
+                    onChange={this.handleInputChange}
+                    value={this.state.buyer.locations}
                   />
                 </StyledInputBlock>
 

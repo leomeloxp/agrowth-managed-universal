@@ -1,5 +1,6 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+import { ILocation } from './location';
 
 export interface IBuyer {
   id: string;
@@ -9,6 +10,7 @@ export interface IBuyer {
   phoneNumber: string;
   email: string;
   comments: string;
+  locations: [ILocation];
 }
 
 export interface IBuyerListQuery extends DocumentNode {
@@ -22,6 +24,13 @@ export const ADD_BUYER = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -33,6 +42,13 @@ export const UPDATE_BUYER = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -44,6 +60,13 @@ export const LIST_BUYER: IBuyerListQuery = gql`
       name
       phoneNumber
       email
+      locations {
+        name
+        address
+        notes
+        latitude
+        longitude
+      }
     }
   }
 `;
