@@ -16,7 +16,7 @@ export interface ILocation {
 
 export interface ILocationDocument extends ILocation, ICustomDocument {}
 
-const LocationSchema = new mongoose.Schema({
+export const LocationSchema = new mongoose.Schema({
   address: {
     required: false,
     type: String

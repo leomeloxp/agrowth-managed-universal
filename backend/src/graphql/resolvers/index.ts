@@ -4,6 +4,7 @@ import {
   createLocationOnSupplier,
   createSupplier,
   supplierList,
+  updateLocationOnSupplier,
   updateSupplier
 } from './supplier';
 import { userList } from './user';
@@ -20,6 +21,7 @@ export default {
     createProduce,
     createSupplier,
     updateBuyer,
+    updateLocationOnSupplier,
     updateProduce,
     updateSupplier
   },

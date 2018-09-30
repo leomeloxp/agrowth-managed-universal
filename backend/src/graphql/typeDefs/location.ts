@@ -17,8 +17,8 @@ const locationTypeDef: DocumentNode = gql`
     name: String!
     address: String
     notes: String
-    latitude: String!
-    longitude: String!
+    latitude: String
+    longitude: String
   }
 `;
 

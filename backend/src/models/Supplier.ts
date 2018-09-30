@@ -1,6 +1,6 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from '.';
-import { ILocation, Location } from './Location';
+import { ILocation, LocationSchema } from './Location';
 
 export interface ISupplier {
   created: Date | number;
@@ -23,7 +23,7 @@ const SupplierSchema = new mongoose.Schema({
     required: false,
     type: String
   },
-  locations: [Location.schema],
+  locations: [LocationSchema],
   name: {
     required: true,
     type: String
