@@ -13,6 +13,10 @@ const createDBConnection = async (URI = '') => {
    */
   mongoose.Promise = global.Promise;
 
+  if (process.env.NODE_ENV === 'development') {
+    mongoose.set('debug', true);
+  }
+
   // Connect Mongoose to our database server (the one defined in .env)
   return mongoose.connect(
     URI,
