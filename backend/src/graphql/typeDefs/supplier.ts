@@ -7,6 +7,7 @@ const supplierTypeDef: DocumentNode = gql`
     createdAt: String
     updatedAt: String
     email: String
+    locations: [Location]
     name: String
     phoneNumber: String
     comments: String

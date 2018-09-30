@@ -1,5 +1,6 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from '.';
+import { ILocation, Location } from './Location';
 
 export interface ISupplier {
   created: Date | number;
@@ -8,6 +9,7 @@ export interface ISupplier {
   name: string;
   phoneNumber: string;
   updated: Date | number;
+  locations: ILocation[];
 }
 
 export interface ISupplierDocument extends ISupplier, ICustomDocument {}
@@ -21,6 +23,7 @@ const SupplierSchema = new mongoose.Schema({
     required: false,
     type: String
   },
+  locations: [Location.schema],
   name: {
     required: true,
     type: String
@@ -42,6 +45,9 @@ SupplierSchema.pre<ISupplierDocument>('save', function preSave(next): void {
   next();
 });
 
-const Supplier: Model<ISupplierDocument> = mongoose.model('Supplier', SupplierSchema);
+const Supplier: Model<ISupplierDocument> = mongoose.model(
+  'Supplier',
+  SupplierSchema
+);
 
 export { Supplier };

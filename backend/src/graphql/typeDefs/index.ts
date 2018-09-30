@@ -1,12 +1,14 @@
 import { gql } from 'apollo-server';
 import { DocumentNode } from 'graphql';
 import buyer from './buyer';
+import location from './location';
 import produce from './produce';
 import supplier from './supplier';
 import user from './user';
 
 const coreTypeDefs: DocumentNode = gql`
   type Mutation {
+    createLocationOnSupplier(id: ID, data: LocationUpdateInput): Supplier
     createSupplier(data: SupplierUpdateInput): Supplier
     createProduce(data: ProduceUpdateInput): Produce
     updateProduce(data: ProduceUpdateInput!, id: ID!): Produce
@@ -23,4 +25,4 @@ const coreTypeDefs: DocumentNode = gql`
   }
 `;
 
-export default [buyer, coreTypeDefs, produce, supplier, user];
+export default [buyer, coreTypeDefs, location, produce, supplier, user];

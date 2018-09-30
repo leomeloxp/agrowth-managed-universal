@@ -1,6 +1,11 @@
-import { createProduce, updateProduce, produceList } from './produce';
-import { createBuyer, updateBuyer, buyerList } from './buyer';
-import { createSupplier, updateSupplier, supplierList } from './supplier';
+import { buyerList, createBuyer, updateBuyer } from './buyer';
+import { createProduce, produceList, updateProduce } from './produce';
+import {
+  createLocationOnSupplier,
+  createSupplier,
+  supplierList,
+  updateSupplier
+} from './supplier';
 import { userList } from './user';
 
 export default {
@@ -10,17 +15,18 @@ export default {
    * and {@link https://github.com/DefinitelyTyped/DefinitelyTyped/issues/21359}
    */
   Mutation: {
-    createProduce,
-    updateProduce,
     createBuyer,
-    updateBuyer,
+    createLocationOnSupplier,
+    createProduce,
     createSupplier,
+    updateBuyer,
+    updateProduce,
     updateSupplier
   },
 
   Query: {
-    produceList,
     buyerList,
+    produceList,
     supplierList,
     userList
   }
