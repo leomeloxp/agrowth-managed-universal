@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
 import GoogleMaps from '../components/GoogleMaps';
+import Header from '../components/Header';
 
 const HomePage: React.SFC = () => (
   <React.Fragment>
-    <Header pageTitle="Workspace Name" />
+    <Header pageTitle='Home' />
     <main>
       <h1>Hello world</h1>
     </main>

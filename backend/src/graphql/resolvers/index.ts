@@ -1,10 +1,15 @@
-import { buyerList, createBuyer, updateBuyer } from './buyer';
+import { 
+  buyerList,
+  createBuyer,
+  // createLocationOnBuyer,
+  updateBuyer
+} from './buyer';
 import { createProduce, produceList, updateProduce } from './produce';
 import {
   createLocationOnSupplier,
   createSupplier,
   supplierList,
-  updateLocationOnSupplier,
+  // updateLocationOnSupplier,
   updateSupplier
 } from './supplier';
 import { userList } from './user';
@@ -17,11 +22,12 @@ export default {
    */
   Mutation: {
     createBuyer,
+    // createLocationOnBuyer,
     createLocationOnSupplier,
     createProduce,
     createSupplier,
     updateBuyer,
-    updateLocationOnSupplier,
+    // updateLocationOnSupplier,
     updateProduce,
     updateSupplier
   },

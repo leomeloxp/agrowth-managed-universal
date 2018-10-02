@@ -103,31 +103,31 @@ class EditBuyersModal extends React.Component<
                   });
                 }}
               >
-                <StyledInputBlock htmlFor="name">
+                <StyledInputBlock htmlFor='name'>
                   <span>Name</span>
                   <input
-                    name="name"
-                    type="text"
+                    name='name'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.name}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor="phoneNumber">
+                <StyledInputBlock htmlFor='phoneNumber'>
                   <span>Phone</span>
                   <input
-                    name="phoneNumber"
-                    type="text"
+                    name='phoneNumber'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.phoneNumber}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor="email">
+                <StyledInputBlock htmlFor='email'>
                   <span>Email</span>
                   <input
-                    name="email"
-                    type="text"
+                    name='email'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.email}
@@ -143,7 +143,7 @@ class EditBuyersModal extends React.Component<
                     value={JSON.stringify(this.state.buyer.locations)}
                   />
                 </StyledInputBlock>
-                <Button primary type="submit">
+                <Button primary type='submit'>
                   Save
                 </Button>
               </form>

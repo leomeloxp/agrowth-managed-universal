@@ -122,6 +122,7 @@ class EditSupplierModal extends React.Component<
                     type='text'
                     required
                     onChange={this.handleInputChange}
+                    onClick={() => {alert('Opens the map')}}
                     value={this.state.supplier.locations}
                   />
                 </StyledInputBlock>

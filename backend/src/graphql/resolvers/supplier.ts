@@ -17,25 +17,25 @@ export const createLocationOnSupplier = async (
   throw new Error(`No valid supplier found from id ${id}`);
 };
 
-export const updateLocationOnSupplier = async (
-  {} = {},
-  { supplierId, locationId, data }: any,
-  { Supplier }: IApolloCustomContext
-): Promise<ISupplier | null> => {
-  const supplier = await Supplier.findById(supplierId).exec();
-  if (supplier) {
-    const location = supplier.locations.id(locationId);
-    Object.keys(data).forEach(key => {
-      location[key] = data[key];
-    });
-    await supplier.save();
-    const dbSupplier = (await Supplier.findById(
-      supplierId
-    ).exec()) as ISupplier;
-    return dbSupplier;
-  }
-  throw new Error(`No valid supplier found from id ${supplierId}`);
-};
+// export const updateLocationOnSupplier = async (
+//   {} = {},
+//   { supplierId, locationId, data }: any,
+//   { Supplier }: IApolloCustomContext
+// ): Promise<ISupplier | null> => {
+//   const supplier = await Supplier.findById(supplierId).exec();
+//   if (supplier) {
+//     const location = supplier.locations.id(locationId);
+//     Object.keys(data).forEach(key => {
+//       location[key] = data[key];
+//     });
+//     await supplier.save();
+//     const dbSupplier = (await Supplier.findById(
+//       supplierId
+//     ).exec()) as ISupplier;
+//     return dbSupplier;
+//   }
+//   throw new Error(`No valid supplier found from id ${supplierId}`);
+// };
 
 export const createSupplier = async (
   {} = {},

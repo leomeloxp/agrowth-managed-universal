@@ -1,7 +1,6 @@
 import { IApolloCustomContext } from '../../lib/generateContext';
 import { IBuyer } from '../../models';
 
-
 export const createLocationOnBuyer = async (
   {} = {},
   { id, data }: any,
@@ -18,25 +17,25 @@ export const createLocationOnBuyer = async (
   throw new Error(`No valid buyer found from id ${id}`);
 };
 
-export const updateLocationOnBuyer = async (
-  {} = {},
-  { buyerId, locationId, data }: any,
-  { Buyer }: IApolloCustomContext
-): Promise<IBuyer | null> => {
-  const buyer = await Buyer.findById(buyerId).exec();
-  if (buyer) {
-    const location = buyer.locations.id(locationId);
-    Object.keys(data).forEach(key => {
-      location[key] = data[key];
-    });
-    await buyer.save();
-    const dbBuyer = (await Buyer.findById(
-      buyerId
-    ).exec()) as IBuyer;
-    return dbBuyer;
-  }
-  throw new Error(`No valid buyer found from id ${buyerId}`);
-};
+// export const updateLocationOnBuyer = async (
+//   {} = {},
+//   { buyerId, locationId, data }: any,
+//   { Buyer }: IApolloCustomContext
+// ): Promise<IBuyer | null> => {
+//   const buyer = await Buyer.findById(buyerId).exec();
+//   if (buyer) {
+//     const location = buyer.locations.id(locationId);
+//     Object.keys(data).forEach(key => {
+//       location[key] = data[key];
+//     });
+//     await buyer.save();
+//     const dbBuyer = (await Buyer.findById(
+//       buyerId
+//     ).exec()) as IBuyer;
+//     return dbBuyer;
+//   }
+//   throw new Error(`No valid buyer found from id ${buyerId}`);
+// };
 
 
 export const createBuyer = async (

@@ -67,6 +67,14 @@ export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
         center: { lat: 49.0285073, lng: -2.1159834 },
         zoom: 8
       });
+      
+      const marker = new google.maps.Marker();
+      marker.setMap(map);
+      google.maps.event.addListener(map, 'click', function(evt: any) {
+        console.log(evt.latLng.lat() + ' ' + evt.latLng.lng());
+        marker.setPosition(evt.latLng);
+      });
+
       this.setState({ map, mapsLoaded: true });
     } else {
       // Fall back scenario in case this function gets called before the Google Maps script is fully parsed, probably won't happen
