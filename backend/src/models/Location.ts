@@ -12,6 +12,8 @@ export interface ILocation {
   notes: string;
   latitude: string;
   longitude: string;
+  // Index Signature to allow for location[key] lookups in code
+  [index: string]: any;
 }
 
 export interface ILocationDocument extends ILocation, ICustomDocument {}

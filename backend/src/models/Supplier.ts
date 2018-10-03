@@ -1,6 +1,6 @@
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 import { ICustomDocument } from '.';
-import { ILocation, LocationSchema } from './Location';
+import { ILocationDocument, LocationSchema } from './Location';
 
 export interface ISupplier {
   created: Date | number;
@@ -9,7 +9,7 @@ export interface ISupplier {
   name: string;
   phoneNumber: string;
   updated: Date | number;
-  locations: ILocation[];
+  locations: Types.DocumentArray<ILocationDocument>;
 }
 
 export interface ISupplierDocument extends ISupplier, ICustomDocument {}
