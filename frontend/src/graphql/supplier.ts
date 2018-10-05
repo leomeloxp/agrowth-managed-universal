@@ -28,8 +28,7 @@ export const ADD_SUPPLIER = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }
@@ -46,8 +45,7 @@ export const UPDATE_SUPPLIER = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }
@@ -64,8 +62,7 @@ export const LIST_SUPPLIER: ISupplierListQuery = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }

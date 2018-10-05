@@ -10,8 +10,7 @@ export interface ILocationDocument extends ICustomDocument {
   name: string;
   address: string;
   notes: string;
-  latitude: string;
-  longitude: string;
+  coordinates: [number, number];
   // Index Signature to allow for location[key] lookups in code
   [index: string]: any;
 }
@@ -21,24 +20,26 @@ export const LocationSchema = new mongoose.Schema({
     required: false,
     type: String
   },
+  coordinates: [
+    {
+      required: 'Please provide coordinates',
+      type: Number
+    }
+  ],
   created: {
     default: Date.now,
     type: Date
   },
-  latitude: {
-    required: true,
-    type: String
-  },
-  longitude: {
-    required: true,
-    type: String
-  },
   name: {
-    required: true,
+    required: 'Please provide a name',
     type: String
   },
   notes: {
     required: false,
+    type: String
+  },
+  type: {
+    default: 'Point',
     type: String
   },
   updated: {
@@ -50,6 +51,7 @@ export const LocationSchema = new mongoose.Schema({
 LocationSchema.pre<ILocationDocument>('save', function preSave(next): void {
   if (this.isModified()) {
     this.updated = Date.now();
+    this.type = 'Point';
   }
   next();
 });

@@ -9,16 +9,14 @@ const locationTypeDef: DocumentNode = gql`
     name: String
     address: String
     notes: String
-    latitude: String
-    longitude: String
+    coordinates: [Float!]!
   }
 
   input LocationUpdateInput {
     name: String!
     address: String
     notes: String
-    latitude: String
-    longitude: String
+    coordinates: [Float!]!
   }
 `;
 

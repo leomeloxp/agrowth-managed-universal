@@ -28,8 +28,7 @@ export const ADD_BUYER = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }
@@ -46,8 +45,7 @@ export const UPDATE_BUYER = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }
@@ -64,8 +62,7 @@ export const LIST_BUYER: IBuyerListQuery = gql`
         name
         address
         notes
-        latitude
-        longitude
+        coordinates
       }
     }
   }
