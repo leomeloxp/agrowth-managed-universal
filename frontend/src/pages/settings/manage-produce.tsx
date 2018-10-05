@@ -4,15 +4,15 @@ import { Query } from 'react-apollo';
 import CreateProduceModal from '../../components/CreateProduceModal';
 import EditProduceModal from '../../components/EditProduceModal';
 import Button from '../../components/elements/Button';
-import Header from '../../components/Header';
-import { IProduce, LIST_PRODUCE } from '../../graphql/produce';
 import {
   ModelObjectList,
   ModelObjectListItem,
-  ModelObjectListItemWrapper,
+  ModelObjectListItemDetails,
   ModelObjectListItemTitle,
-  ModelObjectListItemDetails
+  ModelObjectListItemWrapper
 } from '../../components/elements/ModelObjectList';
+import Header from '../../components/Header';
+import { IProduce, LIST_PRODUCE } from '../../graphql/produce';
 export interface IManageProducePageState {
   produce: unknown | IProduce;
   renderCreateModal: boolean;
@@ -47,7 +47,7 @@ export default class ManageProducePage extends Component<
   public render() {
     return (
       <React.Fragment>
-        <Header pageTitle="Manage Produce" />
+        <Header pageTitle='Manage Produce' />
         <main>
           {this.state.renderCreateModal && (
             <CreateProduceModal close={this.closeModal} />
@@ -61,11 +61,11 @@ export default class ManageProducePage extends Component<
           <Query query={LIST_PRODUCE as DocumentNode}>
             {({ loading, error, data }) => {
               if (loading) {
-                return <p data-testid="manage-produce--loading">Loading...</p>;
+                return <p data-testid='manage-produce--loading'>Loading...</p>;
               }
               if (error) {
                 return (
-                  <p data-testid="manage-produce--error">
+                  <p data-testid='manage-produce--error'>
                     <strong>Error occurred:</strong> {error.message}
                   </p>
                 );
@@ -76,7 +76,7 @@ export default class ManageProducePage extends Component<
                 return (
                   <div>
                     <Button
-                      data-testid="manage-produce--button-add-new"
+                      data-testid='manage-produce--button-add-new'
                       onClick={this.handleCreateButtonClick}
                     >
                       add new produce
@@ -85,7 +85,7 @@ export default class ManageProducePage extends Component<
                       {produceList.map((produce: IProduce) => (
                         <ModelObjectListItem
                           key={produce.id}
-                          data-testid="manage-produce--list-item"
+                          data-testid='manage-produce--list-item'
                         >
                           <ModelObjectListItemWrapper>
                             <ModelObjectListItemTitle>
@@ -96,7 +96,7 @@ export default class ManageProducePage extends Component<
                             </ModelObjectListItemDetails>
                           </ModelObjectListItemWrapper>
                           <Button
-                            data-testid="manage-produce--button-edit"
+                            data-testid='manage-produce--button-edit'
                             onClick={() => this.handleEditButtonClick(produce)}
                           >
                             edit
@@ -108,7 +108,7 @@ export default class ManageProducePage extends Component<
                 );
               }
               return (
-                <p data-testid="manage-produce--impossible-case">
+                <p data-testid='manage-produce--impossible-case'>
                   An unkown error has occurred. It has been reported.
                 </p>
               );

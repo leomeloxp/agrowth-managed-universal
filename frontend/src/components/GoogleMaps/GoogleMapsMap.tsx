@@ -5,13 +5,18 @@ const GoogleMapsWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  max-width: calc(100% - 2rem);
-  margin: 0 auto;
+  max-width: 100%;
   .holder {
-    min-height: 300px;
+    min-height: 150px;
     width: 100%;
   }
 `;
+
+export interface IGoogleMapsProps {
+  lat: number;
+  lng: number;
+  zoom?: number;
+}
 
 export interface IGoogleMapsContext {
   map?: google.maps.Map;
@@ -27,7 +32,10 @@ export const GoogleMapsContext = React.createContext<IGoogleMapsContext>({
   markers: new Map()
 });
 
-export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
+export default class GoogleMap extends React.Component<
+  IGoogleMapsProps,
+  IGoogleMapState
+> {
   public state = {
     map: undefined,
     mapsLoaded: false,
@@ -63,15 +71,16 @@ export default class GoogleMap extends React.Component<{}, IGoogleMapState> {
 
   public waitForMapsScript = () => {
     if ('undefined' !== typeof google && google.maps && this.wrapper) {
+      const { zoom = 8, lat = 0, lng = 0 } = this.props;
+      const center = { lat, lng };
       const map = new google.maps.Map(this.wrapper.current, {
-        center: { lat: 49.0285073, lng: -2.1159834 },
-        zoom: 8
+        center,
+        zoom
       });
-      
+
       const marker = new google.maps.Marker();
       marker.setMap(map);
-      google.maps.event.addListener(map, 'click', function(evt: any) {
-        console.log(evt.latLng.lat() + ' ' + evt.latLng.lng());
+      google.maps.event.addListener(map, 'click', (evt: any) => {
         marker.setPosition(evt.latLng);
       });
 

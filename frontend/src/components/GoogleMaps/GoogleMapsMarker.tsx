@@ -3,28 +3,31 @@ import { GoogleMapsContext } from '../GoogleMaps';
 
 export interface IGoogleMapsMarkerProps {
   draggable?: boolean;
+  lat: number;
+  lng: number;
 }
 
 export default class GoogleMapsMarker extends React.Component<
   IGoogleMapsMarkerProps
 > {
-  addMarkerOnClick = (map: google.maps.Map) => {
-    let marker = new google.maps.Marker();
+  public addMarkerOnClick = (map: google.maps.Map) => {
+    const marker = new google.maps.Marker();
     marker.setMap(map);
-    google.maps.event.addListener(map, 'click', function(evt: any) {
+    google.maps.event.addListener(map, 'click', (evt: any) => {
       marker.setPosition(evt.latLng);
     });
   };
-  render() {
+  public render() {
     return (
       <GoogleMapsContext.Consumer>
         {({ map }) => {
-          const { draggable } = this.props;
-          const position = { lat: 49.1834367, lng: -2.1068161 };
+          const { draggable, lat, lng } = this.props;
+          const position = { lat, lng };
+          // tslint:disable-next-line:no-unused-expression
           new google.maps.Marker({
             draggable,
-            position,
             map,
+            position,
             title: 'You'
           });
           return null;

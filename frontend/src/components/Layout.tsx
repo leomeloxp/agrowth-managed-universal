@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectGlobal, ThemeProvider, css } from 'styled-components';
+import { css, injectGlobal, ThemeProvider } from 'styled-components';
 import { colours, gradients } from '../utils/colours';
 import { elevation } from '../utils/elevation';
 

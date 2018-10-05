@@ -8,8 +8,8 @@ const HomePage: React.SFC = () => (
     <main>
       <h1>Hello world</h1>
     </main>
-    <GoogleMaps.Map>
-      <GoogleMaps.Marker />
+    <GoogleMaps.Map lat={49.1834367} lng={-2.1068161}>
+      <GoogleMaps.Marker lat={49.1834367} lng={-2.1068161} />
     </GoogleMaps.Map>
   </React.Fragment>
 );

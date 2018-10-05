@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.colours.primaryDark};
   color: ${({ theme }) => theme.colours.white};
   display: grid;
-  grid-template-areas: 'back title icons';
+  grid-template-areas: "back title icons";
   grid-template-columns: minmax(0, min-content) 1fr min-content;
   margin-bottom: 25px;
   outline-color: ${({ theme }) => theme.colours.white};
@@ -62,7 +62,7 @@ const Header: React.SFC<
       {length > 0 && pathname !== '/' ? (
         <BackButton
           onClick={window.history.back.bind(window.history)}
-          title="Go to previous page"
+          title='Go to previous page'
         >
           <ArrowBack />
         </BackButton>
@@ -74,8 +74,8 @@ const Header: React.SFC<
       </Link>
       <HeaderIcons>
         <li>
-          <Link prefetch href="/settings">
-            <a title="Settings page">
+          <Link prefetch href='/settings'>
+            <a title='Settings page'>
               <Menu />
             </a>
           </Link>

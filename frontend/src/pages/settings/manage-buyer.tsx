@@ -4,15 +4,15 @@ import { Query } from 'react-apollo';
 import CreateBuyerModal from '../../components/CreateBuyerModal';
 import EditBuyerModal from '../../components/EditBuyerModal';
 import Button from '../../components/elements/Button';
-import Header from '../../components/Header';
-import { IBuyer, LIST_BUYER } from '../../graphql/buyer';
 import {
   ModelObjectList,
   ModelObjectListItem,
-  ModelObjectListItemWrapper,
+  ModelObjectListItemDetails,
   ModelObjectListItemTitle,
-  ModelObjectListItemDetails
+  ModelObjectListItemWrapper
 } from '../../components/elements/ModelObjectList';
+import Header from '../../components/Header';
+import { IBuyer, LIST_BUYER } from '../../graphql/buyer';
 
 export interface IManageBuyerPageState {
   buyer: unknown | IBuyer;
@@ -48,7 +48,7 @@ export default class ManageBuyerPage extends Component<
   public render() {
     return (
       <React.Fragment>
-        <Header pageTitle="Manage Buyer" />
+        <Header pageTitle='Manage Buyer' />
         <main>
           {this.state.renderCreateModal && (
             <CreateBuyerModal close={this.closeModal} />
@@ -62,11 +62,11 @@ export default class ManageBuyerPage extends Component<
           <Query query={LIST_BUYER as DocumentNode}>
             {({ loading, error, data }) => {
               if (loading) {
-                return <p data-testid="manage-buyers--loading">Loading...</p>;
+                return <p data-testid='manage-buyers--loading'>Loading...</p>;
               }
               if (error) {
                 return (
-                  <p data-testid="manage-buyers--error">
+                  <p data-testid='manage-buyers--error'>
                     <strong>Error occurred:</strong> {error.message}
                   </p>
                 );
@@ -77,7 +77,7 @@ export default class ManageBuyerPage extends Component<
                 return (
                   <div>
                     <Button
-                      data-testid="manage-buyers--button-add-new"
+                      data-testid='manage-buyers--button-add-new'
                       onClick={this.handleCreateButtonClick}
                     >
                       add new buyer
@@ -86,7 +86,7 @@ export default class ManageBuyerPage extends Component<
                       {buyerList.map((buyer: IBuyer) => (
                         <ModelObjectListItem
                           key={buyer.id}
-                          data-testid="manage-buyers--list-item"
+                          data-testid='manage-buyers--list-item'
                         >
                           <ModelObjectListItemWrapper>
                             <ModelObjectListItemTitle>
@@ -99,7 +99,7 @@ export default class ManageBuyerPage extends Component<
                             </ModelObjectListItemDetails>
                           </ModelObjectListItemWrapper>
                           <Button
-                            data-testid="manage-buyers--button-edit"
+                            data-testid='manage-buyers--button-edit'
                             onClick={() => this.handleEditButtonClick(buyer)}
                           >
                             edit
@@ -111,7 +111,7 @@ export default class ManageBuyerPage extends Component<
                 );
               }
               return (
-                <p data-testid="manage-buyers--impossible-case">
+                <p data-testid='manage-buyers--impossible-case'>
                   An unkown error has occurred. It has been reported.
                 </p>
               );

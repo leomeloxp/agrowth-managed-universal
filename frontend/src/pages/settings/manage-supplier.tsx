@@ -4,15 +4,16 @@ import { Query } from 'react-apollo';
 import CreateSupplierModal from '../../components/CreateSupplierModal';
 import EditSupplierModal from '../../components/EditSupplierModal';
 import Button from '../../components/elements/Button';
-import Header from '../../components/Header';
-import { ISupplier, LIST_SUPPLIER } from '../../graphql/supplier';
 import {
   ModelObjectList,
   ModelObjectListItem,
-  ModelObjectListItemWrapper,
+  ModelObjectListItemDetails,
   ModelObjectListItemTitle,
-  ModelObjectListItemDetails
+  ModelObjectListItemWrapper
 } from '../../components/elements/ModelObjectList';
+import GoogleMaps from '../../components/GoogleMaps';
+import Header from '../../components/Header';
+import { ISupplier, LIST_SUPPLIER } from '../../graphql/supplier';
 
 export interface IManageSupplierPageState {
   supplier: unknown | ISupplier;
@@ -48,7 +49,7 @@ export default class ManageSupplierPage extends Component<
   public render() {
     return (
       <React.Fragment>
-        <Header pageTitle="Manage Supplier" />
+        <Header pageTitle='Manage Supplier' />
         <main>
           {this.state.renderCreateModal && (
             <CreateSupplierModal close={this.closeModal} />
@@ -62,11 +63,11 @@ export default class ManageSupplierPage extends Component<
           <Query query={LIST_SUPPLIER as DocumentNode}>
             {({ loading, error, data }) => {
               if (loading) {
-                return <p data-testid="manage-supplier--loading">Loading...</p>;
+                return <p data-testid='manage-supplier--loading'>Loading...</p>;
               }
               if (error) {
                 return (
-                  <p data-testid="manage-supplier--error">
+                  <p data-testid='manage-supplier--error'>
                     <strong>Error occurred:</strong> {error.message}
                   </p>
                 );
@@ -77,7 +78,7 @@ export default class ManageSupplierPage extends Component<
                 return (
                   <div>
                     <Button
-                      data-testid="manage-supplier--button-add-new"
+                      data-testid='manage-supplier--button-add-new'
                       onClick={this.handleCreateButtonClick}
                     >
                       add new supplier
@@ -86,23 +87,35 @@ export default class ManageSupplierPage extends Component<
                       {supplierList.map((supplier: ISupplier) => (
                         <ModelObjectListItem
                           key={supplier.id}
-                          data-testid="manage-supplier--list-item"
+                          data-testid='manage-supplier--list-item'
                         >
                           <ModelObjectListItemWrapper>
                             <ModelObjectListItemTitle>
                               <strong>{supplier.name}</strong>
                             </ModelObjectListItemTitle>
                             <ModelObjectListItemDetails>
-                              {supplier.locations[0].name} {' | '} 
                               {supplier.phoneNumber}
                               {supplier.phoneNumber && supplier.email
                                 ? ' | '
                                 : null}
                               {supplier.email}
                             </ModelObjectListItemDetails>
+                            {supplier.locations.length > 0 ? (
+                              <GoogleMaps.Map
+                                lat={supplier.locations[0].coordinates[1]}
+                                lng={supplier.locations[0].coordinates[0]}
+                              >
+                                {supplier.locations.map(({ coordinates }) => (
+                                  <GoogleMaps.Marker
+                                    lat={coordinates[1]}
+                                    lng={coordinates[0]}
+                                  />
+                                ))}
+                              </GoogleMaps.Map>
+                            ) : null}
                           </ModelObjectListItemWrapper>
                           <Button
-                            data-testid="manage-suppliers--button-edit"
+                            data-testid='manage-suppliers--button-edit'
                             onClick={() => this.handleEditButtonClick(supplier)}
                           >
                             edit
@@ -114,7 +127,7 @@ export default class ManageSupplierPage extends Component<
                 );
               }
               return (
-                <p data-testid="manage-supplier--impossible-case">
+                <p data-testid='manage-supplier--impossible-case'>
                   An unkown error has occurred. It has been reported.
                 </p>
               );

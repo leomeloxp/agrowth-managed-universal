@@ -28,7 +28,7 @@ class EditBuyersModal extends React.Component<
   IEditBuyersModalState
 > {
   public state = {
-    buyer: { name: '', phoneNumber: '', email: '', locations: ''}
+    buyer: { name: '', phoneNumber: '', email: '', locations: '' }
   };
 
   public handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -85,31 +85,31 @@ class EditBuyersModal extends React.Component<
                   createBuyer({ variables: { data: this.state.buyer } });
                 }}
               >
-                <StyledInputBlock htmlFor="name">
+                <StyledInputBlock htmlFor='name'>
                   <span>Name</span>
                   <input
-                    name="name"
-                    type="text"
+                    name='name'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.name}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor="phoneNumber">
+                <StyledInputBlock htmlFor='phoneNumber'>
                   <span>Phone</span>
                   <input
-                    name="phoneNumber"
-                    type="text"
+                    name='phoneNumber'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.phoneNumber}
                   />
                 </StyledInputBlock>
-                <StyledInputBlock htmlFor="email">
+                <StyledInputBlock htmlFor='email'>
                   <span>Email</span>
                   <input
-                    name="email"
-                    type="text"
+                    name='email'
+                    type='text'
                     required
                     onChange={this.handleInputChange}
                     value={this.state.buyer.email}
@@ -126,7 +126,7 @@ class EditBuyersModal extends React.Component<
                   />
                 </StyledInputBlock>
 
-                <Button primary type="submit">
+                <Button primary type='submit'>
                   Save
                 </Button>
               </form>
