@@ -1,7 +1,7 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from './index';
 
-export interface ILocation {
+export interface ILocationDocument extends ICustomDocument {
   // System fields
   created: Date | number;
   updated: Date | number;
@@ -15,8 +15,6 @@ export interface ILocation {
   // Index Signature to allow for location[key] lookups in code
   [index: string]: any;
 }
-
-export interface ILocationDocument extends ILocation, ICustomDocument {}
 
 export const LocationSchema = new mongoose.Schema({
   address: {

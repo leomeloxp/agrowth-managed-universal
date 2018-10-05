@@ -1,14 +1,12 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from './index';
 
-export interface IUser {
+export interface IUserDocument extends ICustomDocument {
   created: Date | number;
   id: string;
   name: string;
   updated: Date | number;
 }
-
-export interface IUserDocument extends IUser, ICustomDocument {}
 
 const UserSchema = new mongoose.Schema({
   created: {

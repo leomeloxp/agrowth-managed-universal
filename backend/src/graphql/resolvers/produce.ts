@@ -1,11 +1,11 @@
 import { IApolloCustomContext } from '../../lib/generateContext';
-import { IProduce } from '../../models';
+import { IProduceDocument } from '../../models';
 
 export const createProduce = async (
   {} = {},
   { data }: any,
   { Produce }: IApolloCustomContext
-): Promise<IProduce> => {
+): Promise<IProduceDocument> => {
   const produce = new Produce(data);
   await produce.save();
   return produce;
@@ -15,7 +15,7 @@ export const updateProduce = async (
   {} = {},
   { id, data }: any,
   { Produce }: IApolloCustomContext
-): Promise<IProduce | null> => {
+): Promise<IProduceDocument | null> => {
   await Produce.update({ _id: id }, data).exec();
   const dbProduce = await Produce.findById(id).exec();
   return dbProduce;
@@ -25,4 +25,4 @@ export const produceList = async (
   {} = {},
   {} = {},
   { Produce }: IApolloCustomContext
-): Promise<IProduce[]> => Produce.find();
+): Promise<IProduceDocument[]> => Produce.find();

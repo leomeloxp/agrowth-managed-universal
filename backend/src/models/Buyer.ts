@@ -1,8 +1,8 @@
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 import { ICustomDocument } from './index';
-import { ILocation, LocationSchema } from './Location';
+import { ILocationDocument, LocationSchema } from './Location';
 
-export interface IBuyer {
+export interface IBuyerDocument extends ICustomDocument {
   // System fields
   created: Date | number;
   updated: Date | number;
@@ -12,11 +12,8 @@ export interface IBuyer {
   phoneNumber: string;
   email: string;
   comments: string;
-  locations: ILocation[];
-
+  locations: Types.DocumentArray<ILocationDocument>;
 }
-
-export interface IBuyerDocument extends IBuyer, ICustomDocument {}
 
 const BuyerSchema = new mongoose.Schema({
   comments: {
@@ -33,7 +30,7 @@ const BuyerSchema = new mongoose.Schema({
   },
   locations: [LocationSchema],
   name: {
-    required: true,
+    required: 'Please provide a name',
     type: String
   },
   phoneNumber: {

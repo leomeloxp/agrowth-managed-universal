@@ -2,7 +2,7 @@ import mongoose, { Model, Types } from 'mongoose';
 import { ICustomDocument } from '.';
 import { ILocationDocument, LocationSchema } from './Location';
 
-export interface ISupplier {
+export interface ISupplierDocument extends ICustomDocument {
   created: Date | number;
   id: string;
   email: string;
@@ -11,8 +11,6 @@ export interface ISupplier {
   updated: Date | number;
   locations: Types.DocumentArray<ILocationDocument>;
 }
-
-export interface ISupplierDocument extends ISupplier, ICustomDocument {}
 
 const SupplierSchema = new mongoose.Schema({
   created: {

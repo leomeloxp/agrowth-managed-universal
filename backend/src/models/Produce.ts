@@ -1,15 +1,13 @@
 import mongoose, { Model } from 'mongoose';
 import { ICustomDocument } from './index';
 
-export interface IProduce {
+export interface IProduceDocument extends ICustomDocument {
   created: Date | number;
   id: string;
   name: string;
   unit: string;
   updated: Date | number;
 }
-
-export interface IProduceDocument extends IProduce, ICustomDocument {}
 
 const ProduceSchema = new mongoose.Schema({
   created: {

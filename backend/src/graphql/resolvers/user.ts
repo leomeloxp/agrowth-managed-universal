@@ -1,8 +1,8 @@
 import { IApolloCustomContext } from '../../lib/generateContext';
-import { IUser } from '../../models';
+import { IUserDocument } from '../../models';
 
 export const userList = async (
   {} = {},
   {} = {},
   { User }: IApolloCustomContext
-): Promise<IUser[]> => User.find();
+): Promise<IUserDocument[]> => User.find();
