@@ -19,7 +19,7 @@ createDBConnection(URI).catch(err => {
  * for network requests
  */
 initApolloServer().then(server => {
-  server.listen().then(({ url }) => {
+  server.listen().then(({ url }: { url: string }) => {
     if (process.env.NODE_ENV !== 'production') {
       // tslint:disable-next-line no-console
       console.log(`🚀  Server ready at ${url}`);
