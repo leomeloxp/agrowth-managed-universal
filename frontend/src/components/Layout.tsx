@@ -2,6 +2,8 @@ import React from 'react';
 import { css, injectGlobal, ThemeProvider } from 'styled-components';
 import { colours, gradients } from '../utils/colours';
 import { elevation } from '../utils/elevation';
+import nprogressStyling from '../utils/nprogress-styling';
+
 
 // tslint:disable-next-line:no-unused-expression
 injectGlobal`
@@ -23,6 +25,7 @@ injectGlobal`
     outline-color: ${colours.primary}
     line-height: 2;
   }
+  ${nprogressStyling}
 `;
 
 const Layout: React.SFC = ({ children }) => (

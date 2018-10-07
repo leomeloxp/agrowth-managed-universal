@@ -1,8 +1,21 @@
 import { ArrowBack, Menu } from '@material-ui/icons';
 import Link, { LinkState } from 'next/link';
-import { DefaultQuery, withRouter, WithRouterProps } from 'next/router';
+// tslint:disable-next-line:import-name
+import Router, { DefaultQuery, withRouter, WithRouterProps } from 'next/router';
+// tslint:disable-next-line:import-name
+import NProgress from 'nprogress';
 import React from 'react';
 import styled from 'styled-components';
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 export interface IHeaderProps extends LinkState {
   pageTitle: string;
