@@ -6,16 +6,19 @@ import {
   IBuyerDocument,
   ILocationDocument,
   IProduceDocument,
+  IPurchaseDocument,
   ISupplierDocument,
   IUserDocument,
   Location,
   Produce,
+  Purchase,
   Supplier,
   User
 } from '../models';
 
 export interface IApolloCustomContext extends Context {
   Produce: Model<IProduceDocument>;
+  Purchase: Model<IPurchaseDocument>; 
   Buyer: Model<IBuyerDocument>;
   Location: Model<ILocationDocument>;
   Supplier: Model<ISupplierDocument>;
@@ -32,6 +35,7 @@ export const generateContext = async (): Promise<IApolloCustomContext> => {
     Buyer,
     Location,
     Produce,
+    Purchase,
     Supplier,
     User
   };

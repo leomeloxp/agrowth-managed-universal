@@ -4,6 +4,7 @@ import { Document } from 'mongoose';
 export { Buyer, IBuyerDocument } from './Buyer';
 export { ILocationDocument, Location } from './Location';
 export { IProduceDocument, Produce } from './Produce';
+export { IPurchaseDocument, Purchase } from './Purchase';
 export { ISupplierDocument, Supplier } from './Supplier';
 export { IUserDocument, User } from './User';
 

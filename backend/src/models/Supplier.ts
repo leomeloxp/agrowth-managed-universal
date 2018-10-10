@@ -1,6 +1,7 @@
 import mongoose, { Model, Types } from 'mongoose';
 import { ICustomDocument } from '.';
 import { ILocationDocument, LocationSchema } from './Location';
+import { IPurchaseDocument, PurchaseSchema } from './Purchase';
 
 export interface ISupplierDocument extends ICustomDocument {
   created: Date | number;
@@ -10,6 +11,7 @@ export interface ISupplierDocument extends ICustomDocument {
   phoneNumber: string;
   updated: Date | number;
   locations: Types.DocumentArray<ILocationDocument>;
+  purchase: Types.DocumentArray<IPurchaseDocument>;
 }
 
 const SupplierSchema = new mongoose.Schema({
@@ -30,6 +32,7 @@ const SupplierSchema = new mongoose.Schema({
     required: false,
     type: String
   },
+  purchase: [PurchaseSchema],
   updated: {
     default: Date.now,
     type: Date

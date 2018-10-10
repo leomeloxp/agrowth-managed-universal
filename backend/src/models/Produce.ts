@@ -9,7 +9,7 @@ export interface IProduceDocument extends ICustomDocument {
   updated: Date | number;
 }
 
-const ProduceSchema = new mongoose.Schema({
+export const ProduceSchema = new mongoose.Schema({
   created: {
     default: Date.now,
     type: Date
