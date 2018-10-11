@@ -11,10 +11,17 @@ const coreTypeDefs: DocumentNode = gql`
   type Mutation {
     createBuyer(data: BuyerUpdateInput): Buyer
     createLocationOnSupplier(id: ID, data: LocationUpdateInput): Supplier
+    createLocationOnBuyer(id: ID, data: LocationUpdateInput): Buyer
     createProduce(data: ProduceUpdateInput): Produce
+    createProduceOnPurchase(data: ProduceUpdateInput): Purchase
     createPurchase(data: PurchaseUpdateInput): Purchase
     createSupplier(data: SupplierUpdateInput): Supplier
     updateBuyer(data: BuyerUpdateInput!, id: ID!): Buyer
+    updateLocationOnBuyer(
+      updateId: ID!
+      locationId: ID!
+      data: LocationUpdateInput
+    ): Buyer
     updateLocationOnSupplier(
       supplierId: ID!
       locationId: ID!
