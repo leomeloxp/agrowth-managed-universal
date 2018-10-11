@@ -1,6 +1,47 @@
 import { IApolloCustomContext } from '../../lib/generateContext';
 import { ILocationDocument, ISupplierDocument } from '../../models';
 
+export const createPurchaseOnSupplier = async (
+  {} = {},
+  { id, data }: any,
+  { Supplier, Purchase }: IApolloCustomContext
+): Promise<ISupplierDocument> => {
+  const supplier = await Supplier.findById(id).exec();
+  if (supplier) {
+    const purchase = new Purchase(data);
+    supplier.purchase.push(purchase);
+    await supplier.save().catch(err => {
+      console.error(err.message);
+      throw new Error(err);
+    });
+    const dbSupplier = (await Supplier.findById(
+      id
+    ).exec()) as ISupplierDocument;
+    return dbSupplier;
+  }
+  throw new Error(`No valid supplier found from id ${id}`);
+};
+
+export const updatePurchaseOnSupplier = async (
+  {} = {},
+  { supplierId, purchaseId, data }: any,
+  { Supplier }: IApolloCustomContext
+): Promise<ISupplierDocument | null> => {
+  const supplier = await Supplier.findById(supplierId).exec();
+  if (supplier) {
+    const purchase: ILocationDocument = supplier.purchase.id(purchaseId);
+    Object.keys(data).forEach(key => {
+      purchase[key] = data[key];
+    });
+    await supplier.save();
+    const dbSupplier = (await Supplier.findById(
+      supplierId
+    ).exec()) as ISupplierDocument;
+    return dbSupplier;
+  }
+  throw new Error(`No valid supplier found from id ${supplierId}`);
+};
+
 export const createLocationOnSupplier = async (
   {} = {},
   { id, data }: any,

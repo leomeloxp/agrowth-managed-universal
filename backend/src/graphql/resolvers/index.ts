@@ -13,14 +13,16 @@ import {
 import {
   createProduceOnPurchase,
   createPurchase,
-  // updateProduceOnPurchase,
+  updateProduceOnPurchase,
   updatePurchase,
 } from './purchase';
 import {
   createLocationOnSupplier,
+  createPurchaseOnSupplier,
   createSupplier,
   supplierList,
   updateLocationOnSupplier,
+  updatePurchaseOnSupplier,
   updateSupplier
 } from './supplier';
 import { userList } from './user';
@@ -38,13 +40,15 @@ export default {
     createProduce,
     createProduceOnPurchase,
     createPurchase,
+    createPurchaseOnSupplier,
     createSupplier,
     updateBuyer,
     updateLocationOnBuyer,
     updateLocationOnSupplier,
     updateProduce,
-    // updateProduceOnPurchase,
+    updateProduceOnPurchase,
     updatePurchase,
+    updatePurchaseOnSupplier,
     updateSupplier
   },
 

@@ -15,6 +15,7 @@ const coreTypeDefs: DocumentNode = gql`
     createProduce(data: ProduceUpdateInput): Produce
     createProduceOnPurchase(data: ProduceUpdateInput): Purchase
     createPurchase(data: PurchaseUpdateInput): Purchase
+    createPurchaseOnSupplier(id: ID, data: PurchaseUpdateInput): Supplier
     createSupplier(data: SupplierUpdateInput): Supplier
     updateBuyer(data: BuyerUpdateInput!, id: ID!): Buyer
     updateLocationOnBuyer(
@@ -27,7 +28,17 @@ const coreTypeDefs: DocumentNode = gql`
       locationId: ID!
       data: LocationUpdateInput
     ): Supplier
+    updateProduceOnPurchase(
+      purchaseId: ID!
+      produceId: ID!
+      data: ProduceUpdateInput
+    ): Purchase
     updateProduce(data: ProduceUpdateInput!, id: ID!): Produce
+    updatePurchaseOnSupplier(
+      supplierId: ID!
+      purchaseId: ID!
+      data: PurchaseUpdateInput
+    ): Supplier
     updatePurchase(data: PurchaseUpdateInput!, id: ID!): Purchase
     updateSupplier(data: SupplierUpdateInput!, id: ID!): Supplier
   }
