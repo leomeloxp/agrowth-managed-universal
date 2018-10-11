@@ -51,6 +51,9 @@ PurchaseSchema.pre<IPurchaseDocument>('save', function preSave(next): void {
   next();
 });
 
-const Purchase: Model<IPurchaseDocument> = mongoose.model('Purchase', PurchaseSchema);
+const Purchase: Model<IPurchaseDocument> = mongoose.model(
+  'Purchase',
+  PurchaseSchema
+);
 
 export { Purchase };

@@ -13,7 +13,7 @@ const purchaseTypeDef: DocumentNode = gql`
     comments: String
   }
 
-  input PurchaseUpdateInput { 
+  input PurchaseUpdateInput {
     quantity: String
     price: String
     status: String
