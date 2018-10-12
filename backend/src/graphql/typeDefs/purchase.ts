@@ -6,7 +6,7 @@ const purchaseTypeDef: DocumentNode = gql`
     id: ID!
     createdAt: String
     updatedAt: String
-    quantity: String
+    quantity: Float
     produce: [Produce]
     price: String
     status: Boolean
@@ -14,10 +14,12 @@ const purchaseTypeDef: DocumentNode = gql`
   }
 
   input PurchaseUpdateInput {
-    quantity: String
+    quantity: Float
     price: String
     status: String
     comments: String
+    supplierID: ID
+    produceID: ID
   }
 `;
 

@@ -9,10 +9,11 @@ export interface IPurchaseDocument extends ICustomDocument {
   id: string;
   // Custom fields
   produce: Types.DocumentArray<IProduceDocument>;
-  quantity: string;
+  quantity: number;
   price: string;
   status: boolean;
   comments: string;
+  [index: string]: any;
 }
 
 export const PurchaseSchema = new mongoose.Schema({
@@ -31,7 +32,7 @@ export const PurchaseSchema = new mongoose.Schema({
   produce: [ProduceSchema],
   quantity: {
     required: 'Please provide an amount',
-    type: String
+    type: Number
   },
   status: {
     default: true,

@@ -1,5 +1,5 @@
 import { IApolloCustomContext } from '../../lib/generateContext';
-import { ILocationDocument, ISupplierDocument } from '../../models';
+import { ILocationDocument, IPurchaseDocument, ISupplierDocument } from '../../models';
 
 export const createPurchaseOnSupplier = async (
   {} = {},
@@ -29,7 +29,7 @@ export const updatePurchaseOnSupplier = async (
 ): Promise<ISupplierDocument | null> => {
   const supplier = await Supplier.findById(supplierId).exec();
   if (supplier) {
-    const purchase: ILocationDocument = supplier.purchase.id(purchaseId);
+    const purchase: IPurchaseDocument = supplier.purchase.id(purchaseId);
     Object.keys(data).forEach(key => {
       purchase[key] = data[key];
     });
