@@ -7,6 +7,7 @@ export interface IProduceDocument extends ICustomDocument {
   name: string;
   unit: string;
   updated: Date | number;
+  [index: string]: any;
 }
 
 export const ProduceSchema = new mongoose.Schema({
