@@ -11,7 +11,16 @@ const StyledOverlay = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+`;
+
+const ModalBackground = styled.div`
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;
 `;
 
 const StyledModal = styled.div`
@@ -21,7 +30,7 @@ const StyledModal = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 25px 1fr;
-  max-width: 20rem;
+  max-width: 30rem;
   width: calc(100% - 2rem);
   ${({ theme }) => theme.elevation(23)};
   .content {
@@ -57,6 +66,7 @@ export default class Modal extends React.Component<{ close: () => void }> {
             </CloseButton>
             <div className='content'>{this.props.children}</div>
           </StyledModal>
+          <ModalBackground onClick={this.props.close} />
         </StyledOverlay>
       </Portal>
     );
