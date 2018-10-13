@@ -34,8 +34,13 @@ class EditSupplierModal extends React.Component<
   IEditSupplierModalProps,
   IEditSupplierModalState
 > {
-  public state = {
-    supplier: { ...this.props.supplier, id: undefined, __typename: undefined }
+  public state: IEditSupplierModalState = {
+    supplier: {
+      email: this.props.supplier.email,
+      locations: this.props.supplier.locations,
+      name: this.props.supplier.name,
+      phoneNumber: this.props.supplier.phoneNumber
+    }
   };
 
   public handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -132,16 +137,6 @@ class EditSupplierModal extends React.Component<
                     required
                     onChange={this.handleInputChange}
                     value={this.state.supplier.phoneNumber}
-                  />
-                </StyledInputBlock>
-                <StyledInputBlock htmlFor='locations'>
-                  <span>Locations</span>
-                  <input
-                    name='locations'
-                    type='text'
-                    required
-                    onChange={this.handleInputChange}
-                    value={JSON.stringify(this.state.supplier.locations)}
                   />
                 </StyledInputBlock>
                 <Button primary type='submit'>

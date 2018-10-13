@@ -7,11 +7,9 @@ import Button from '../../components/elements/Button';
 import {
   ModelObjectList,
   ModelObjectListItem,
-  ModelObjectListItemDetails,
   ModelObjectListItemTitle,
   ModelObjectListItemWrapper
 } from '../../components/elements/ModelObjectList';
-import GoogleMaps from '../../components/GoogleMaps';
 import Header from '../../components/Header';
 import { ISupplier, LIST_SUPPLIER } from '../../graphql/supplier';
 
@@ -93,27 +91,13 @@ export default class ManageSupplierPage extends Component<
                             <ModelObjectListItemTitle>
                               <strong>{supplier.name}</strong>
                             </ModelObjectListItemTitle>
-                            <ModelObjectListItemDetails>
-                              {supplier.phoneNumber}
-                              {supplier.phoneNumber && supplier.email
-                                ? ' | '
-                                : null}
-                              {supplier.email}
-                            </ModelObjectListItemDetails>
-                            {supplier.locations.length > 0 ? (
-                              <GoogleMaps.Map
-                                lat={supplier.locations[0].coordinates[1]}
-                                lng={supplier.locations[0].coordinates[0]}
-                              >
-                                {supplier.locations.map(({ coordinates }) => (
-                                  <GoogleMaps.Marker
-                                    lat={coordinates[1]}
-                                    lng={coordinates[0]}
-                                  />
-                                ))}
-                              </GoogleMaps.Map>
-                            ) : null}
                           </ModelObjectListItemWrapper>
+                          <Button
+                            data-testid='manage-suppliers--button-view'
+                            onClick={() => this.handleEditButtonClick(supplier)}
+                          >
+                            view
+                          </Button>
                           <Button
                             data-testid='manage-suppliers--button-edit'
                             onClick={() => this.handleEditButtonClick(supplier)}
