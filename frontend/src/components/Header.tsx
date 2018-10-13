@@ -26,8 +26,8 @@ const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.colours.primaryDark};
   color: ${({ theme }) => theme.colours.white};
   display: grid;
-  grid-template-areas: "back title icons";
-  grid-template-columns: minmax(0, min-content) 1fr min-content;
+  grid-template-areas: "title icons";
+  grid-template-columns: 1fr min-content;
   margin-bottom: 25px;
   outline-color: ${({ theme }) => theme.colours.white};
   padding: 0 1rem;
@@ -66,20 +66,9 @@ const BackButton = styled.button`
 const Header: React.SFC<
   IHeaderProps & WithRouterProps<DefaultQuery & LinkState>
 > = ({ router: { pathname }, pageTitle, href }) => {
-  let length: number = 0;
-  if (typeof window !== 'undefined') {
-    length = window.history.length;
-  }
+  
   return (
     <StyledHeader>
-      {length > 0 && pathname !== '/' ? (
-        <BackButton
-          onClick={window.history.back.bind(window.history)}
-          title='Go to previous page'
-        >
-          <ArrowBack />
-        </BackButton>
-      ) : null}
       <Link prefetch passHref href={pathname}>
         <Title href={href as string}>
           <StyledH1>{pageTitle}</StyledH1>
